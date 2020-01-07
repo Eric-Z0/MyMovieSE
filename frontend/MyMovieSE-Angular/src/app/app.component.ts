@@ -6,5 +6,4 @@ import { Component } from '@angular/core'; // import the component annotation
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  //title = 'MyMovieSE-Angular';
 }

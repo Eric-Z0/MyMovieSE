@@ -3,12 +3,26 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { JumbotronComponent } from './components/jumbotron/jumbotron.component';
+import { MovieComponent } from './components/movie/movie.component';
+import { MovieBoxComponent } from './components/movie-box/movie-box.component';
+import { SortNavBarComponent } from './components/sort-nav-bar/sort-nav-bar.component';
+import { SearchResultBarComponent } from './components/search-result-bar/search-result-bar.component';
 
 // Use the NgModule annotation to define a module by passing an object
 @NgModule({
   // Declarations are to list any components and directives used in the app
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    JumbotronComponent,
+    MovieComponent,
+    MovieBoxComponent,
+    SortNavBarComponent,
+    SearchResultBarComponent
   ],
   imports: [
     BrowserModule,
