@@ -15,7 +15,7 @@ export class MovieBoxComponent implements OnInit {
 
   // Similar to @PostConstruct
   ngOnInit() {
-    this.showMovieSnapshots();
+    //this.showMovieSnapshots();
   }
 
   showMovieSnapshots() {
