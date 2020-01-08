@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MovieService, movieSnapshotInterface } from 'src/app/services/movie.service';
+import { Movie } from 'src/app/common/movie';
 
 @Component({
   selector: 'app-movie-box',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieBoxComponent implements OnInit {
 
-  constructor() { }
+  movieSnapshots: Array<movieSnapshotInterface>;
+  
+  constructor(private movieService: MovieService) { }
 
+  // Similar to @PostConstruct
   ngOnInit() {
+    this.showMovieSnapshots();
+  }
+
+  showMovieSnapshots() {
+    // Method is invoked once you "subscribe"
+    this.movieService.GetMovieSnapshot().subscribe(
+        data => {
+          this.movieSnapshots = data;
+        }
+    );
   }
 
 }
