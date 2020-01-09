@@ -1,8 +1,25 @@
-<div class="row bg-info text-white text-center">
-    <div class="col-md-6">
-        <p>100 results found</p>
+<section class="sec-search-result-bar">
+    <div class="container">
+        <div class="row py-md-2">
+            <div class="col-md-6 py-md-3">
+                {{ numOfResults }} results found
+            </div>
+            <div class="col-md-6 py-md-2">
+                <span class="float-right">
+                    <span class="mr-md-4">Sorted by</span>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Filter
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Highest Rating</a>
+                            <a class="dropdown-item" href="#">Year</a>
+                        </div>
+                    </div>
+                </span>
+            </div>
+        </div>
     </div>
-    <div class="col-md-6">
-        <p class="col-md-6">Filtered by: latest, highest rated</p>
-    </div>
-</div>
+</section>
+
+

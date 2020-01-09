@@ -10,12 +10,13 @@ import { Movie } from 'src/app/common/movie';
 export class MovieBoxComponent implements OnInit {
 
   movieSnapshots: Array<movieSnapshotInterface>;
+  numOfResults: number;
   
   constructor(private movieService: MovieService) { }
 
   // Similar to @PostConstruct
   ngOnInit() {
-    //this.showMovieSnapshots();
+    this.showMovieSnapshots();
   }
 
   showMovieSnapshots() {
@@ -23,6 +24,12 @@ export class MovieBoxComponent implements OnInit {
     this.movieService.GetMovieSnapshot().subscribe(
         data => {
           this.movieSnapshots = data;
+          if(data != null){
+            this.numOfResults = data.length;
+          }
+          else{
+            this.numOfResults = 0;
+          }
         }
     );
   }
