@@ -20,8 +20,8 @@ export class MovieBoxComponent implements OnInit {
   }
 
   // For testing data binding
-  increment() {
-    console.log("Run Func");
+  increment(title: string) {
+    console.log("Movie Title: ", title);
     this.numOfResults += 1;
   }
 
