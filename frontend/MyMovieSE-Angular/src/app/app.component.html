@@ -1,5 +1,5 @@
-<app-header></app-header>
+<app-header (onSearch)="movieSearchClick($event)"></app-header>
 <app-jumbotron></app-jumbotron>
-<app-sort-nav-bar (onSearch)="movieSearchClick($event)"></app-sort-nav-bar>
+<app-sort-nav-bar></app-sort-nav-bar>
 <app-movie-box></app-movie-box>
 <app-footer></app-footer>
