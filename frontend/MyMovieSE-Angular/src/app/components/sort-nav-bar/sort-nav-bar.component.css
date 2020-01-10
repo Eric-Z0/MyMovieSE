@@ -16,4 +16,15 @@ a:hover {
     border-radius: .25rem;;
 }
 
+/* .gradient-color {
+    border-top-color: white;
+    border-top-width: thick;
+    border-top-style: solid;
+    background: linear-gradient(to left, rgb(18, 120, 246), rgb(0, 180, 170));
+} */
+
+.search-box {
+    background: #f1f1f1;
+}
+
 

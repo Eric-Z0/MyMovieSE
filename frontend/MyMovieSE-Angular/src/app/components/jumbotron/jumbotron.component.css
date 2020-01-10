@@ -13,10 +13,12 @@
     background: rgba(0, 0, 0, 0.6);
 }
 
+/*
+Note: abandoned the attempt of postioning the search box at the bottom of carousel slide
 .search-box {
     position: absolute;
     width: 100%;
-    top: 75%;
+    top: 70%;
     left: 10%;
-    transform: translateX(-10%);
-}
+    transform: translateX(5%);
+} */

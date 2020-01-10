@@ -1,5 +1,4 @@
 .sec-search-result-bar {
-    border-top-style: solid;
-    border-top-width: thin;
-    border-top-color: grey;
+    background: #f7f8fa;
+    box-shadow: 0 0 1px 1px rgba(20, 12, 28, .1), 0 3px 1px 0 rgba(20, 12, 28, .1);
 }

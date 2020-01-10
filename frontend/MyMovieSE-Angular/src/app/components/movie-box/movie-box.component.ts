@@ -16,22 +16,41 @@ export class MovieBoxComponent implements OnInit {
 
   // Similar to @PostConstruct
   ngOnInit() {
-    //this.showMovieSnapshots();
+    this.loadMovieSnapshots();
   }
 
-  showMovieSnapshots() {
-    // Method is invoked once you "subscribe"
-    this.movieService.GetMovieSnapshot().subscribe(
+  // For testing data binding
+  increment() {
+    console.log("Run Func");
+    this.numOfResults += 1;
+  }
+
+  loadMovieSnapshots() {
+    this.movieService.getMovieSnapshotList().subscribe(
         data => {
           this.movieSnapshots = data;
-          if(data != null){
+          if(data != null) {
             this.numOfResults = data.length;
           }
-          else{
+          else {
             this.numOfResults = 0;
           }
         }
     );
   }
 
+  searchMovieByTitle(title: string) {
+    this.movieService.getMovieSnapshot(title).subscribe(
+      data => {
+        this.movieSnapshots = data;
+        if(data != null) {
+          this.numOfResults = data.length + 2;
+          console.log(this.numOfResults);
+        }
+        else {
+          this.numOfResults = 0;
+        }
+      }
+    );
+  }
 }
