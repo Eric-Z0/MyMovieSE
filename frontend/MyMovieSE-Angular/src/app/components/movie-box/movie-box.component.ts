@@ -30,10 +30,10 @@ export class MovieBoxComponent implements OnInit {
 
   // Similar to @PostConstruct
   ngOnInit() {
-    let defMovieTitle: string = "Batman";
-    for(let index=1; index<= 3; index++){
-      this.loadMovieSnapshots(defMovieTitle, index);
-    }
+    // let defMovieTitle: string = "Batman";
+    // for(let index=1; index<= 3; index++){
+    //   this.loadMovieSnapshots(defMovieTitle, index);
+    // }
   }
 
   loadCurrentMovieSnapshots(currPage:number) {
