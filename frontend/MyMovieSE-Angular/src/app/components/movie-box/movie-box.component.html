@@ -2,10 +2,16 @@
 <section>
     <div class="container py-5">
         <div class="row" >
-            <div class="col-md-3 mb-5" *ngFor="let movieSnapshot of movieSnapshots">
+            <div class="col-md-3 mb-5" *ngFor="let movieSnapshot of currentMovieSnapshots">
                 <app-movie-snapshot [movieSnapshot]="movieSnapshot"></app-movie-snapshot>
             </div>
         </div>
+        <app-pagination 
+        (onPageLoad)="pageLoadClick($event)" 
+        [pageNumbers]="currentPageNumArr"
+        [previousEnabled]="pBtnEnabled"
+        [nextEnabled]="nBtnEnabled"
+        ></app-pagination>
     </div>
 </section>
 

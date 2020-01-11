@@ -1,0 +1,21 @@
+<nav aria-label="Movie page navigation">
+    <ul class="pagination justify-content-center">
+        <li *ngIf="!previousEnabled" class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+        <li *ngIf="previousEnabled" class="page-item">
+            <a class="page-link" (click)="loadPreviousPage()" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+
+        <li class="page-item" [ngClass]="{'active': selectedNum == pageNum}" *ngFor="let pageNum of pageNumbers;">
+            <a class="page-link" (click)="loadPage(pageNum)">{{ pageNum }}</a>
+        </li>
+
+        <li *ngIf="!nextEnabled" class="page-item disabled">
+            <a class="page-link" href="#">Next</a>
+        </li>
+        <li *ngIf="nextEnabled" class="page-item">
+            <a class="page-link" (click)="loadNextPage()">Next</a>
+        </li>
+    </ul>
+</nav>

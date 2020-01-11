@@ -23,7 +23,7 @@ interface GetResponse {
 })
 export class MovieService {
 
-  private testUrl = 'http://www.omdbapi.com/?s=joker&apikey=a9b731fa'
+  private testUrl = 'http://www.omdbapi.com/?s=Batman&page=2&apikey=a9b731fa'
   
   constructor(private httpClient: HttpClient) { }
 
@@ -35,8 +35,8 @@ export class MovieService {
   }
 
   // Get movie snapshot(s) based on movie title
-  getMovieSnapshot(movieTile: string): Observable<movieSnapshotInterface[]> {
-    let searchMovieByTitleUrl: string = `http://www.omdbapi.com/?s=${movieTile}&apikey=a9b731fa`;
+  getMovieSnapshot(movieTile: string, pageNum:number=1): Observable<movieSnapshotInterface[]> {
+    let searchMovieByTitleUrl: string = `http://www.omdbapi.com/?s=${movieTile}&page=${pageNum}&apikey=a9b731fa`;
     return this.httpClient.get<GetResponse>(searchMovieByTitleUrl).pipe(
       map(response => response.Search)
     );

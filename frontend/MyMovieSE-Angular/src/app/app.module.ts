@@ -14,6 +14,7 @@ import { SearchResultBarComponent } from './components/search-result-bar/search-
 
 import { MovieService } from './services/movie.service';
 import { MovieSnapshotComponent } from './components/movie-snapshot/movie-snapshot.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 // Use the NgModule annotation to define a module by passing an object
 @NgModule({
@@ -27,7 +28,8 @@ import { MovieSnapshotComponent } from './components/movie-snapshot/movie-snapsh
     MovieBoxComponent,
     SortNavBarComponent,
     SearchResultBarComponent,
-    MovieSnapshotComponent
+    MovieSnapshotComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
