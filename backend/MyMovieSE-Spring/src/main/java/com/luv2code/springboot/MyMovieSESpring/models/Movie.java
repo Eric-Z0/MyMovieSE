@@ -1,4 +1,4 @@
-package com.luv2code.springboot.MyMovieSESpring.entity;
+package com.luv2code.springboot.MyMovieSESpring.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
