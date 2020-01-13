@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
   selector: 'app-header',
@@ -10,13 +11,14 @@ export class HeaderComponent implements OnInit {
   @Output() onSearch = new EventEmitter();
   userLoggedIn: boolean = false;
 
-  constructor() { }
+  constructor(private movieService: MovieService) { }
 
   ngOnInit() {
   }
 
   search(movieTitle: string) {
-    this.onSearch.emit(movieTitle);
+    this.movieService.emitChange(movieTitle);
+    //this.onSearch.emit(movieTitle);
   }
 
   logIn() {

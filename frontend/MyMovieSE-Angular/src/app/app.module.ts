@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -18,6 +18,16 @@ import { MovieSnapshotComponent } from './components/movie-snapshot/movie-snapsh
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HomeComponent } from './components/home/home.component';
+
+const appRoutes: Routes = [
+  { path: ":movie_id", redirectTo: 'movie/:movie_id', pathMatch: 'full'},
+  { path: 'movie/:movie_id', component: MovieComponent},
+  { path: '', component: HomeComponent},
+  // { path: 'home', component: HomeComponent},
+  { path: '**', component: NotFoundComponent},
+]
 
 // Use the NgModule annotation to define a module by passing an object
 @NgModule({
@@ -34,13 +44,15 @@ import { LoginComponent } from './components/login/login.component';
     MovieSnapshotComponent,
     PaginationComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    NotFoundComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [MovieService],
   bootstrap: [AppComponent] // Bootstrap declares which component to use as the first to bootstrap the application

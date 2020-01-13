@@ -26,7 +26,11 @@ export class MovieBoxComponent implements OnInit {
   indexOfLastMovie: number;
   currentMovieSnapshots: Array<movieSnapshotInterface>;
   
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService) { 
+    this.movieService.changeEmitted$.subscribe(titleVal => {
+      this.searchMovieByTitle(titleVal);
+    });
+  }
 
   // Similar to @PostConstruct
   ngOnInit() {

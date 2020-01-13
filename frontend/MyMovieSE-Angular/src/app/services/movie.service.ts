@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Movie } from '../common/movie';
 
 // Defines and exports the TypeScript interface for movieSnapshot object
 export interface movieSnapshotInterface {
@@ -12,6 +11,35 @@ export interface movieSnapshotInterface {
   Type: string;
   Poster: string;
 }
+
+export interface movieInterface {
+  Title: string;
+  Year: string;
+  Rated: string;
+  Released: string;
+  Runtime: string;
+  Genre: string;
+  Director: string;
+  Writer: string;
+  Actors: string;
+  Plot: string;
+  Language: string;
+  Country: string;
+  Awards: string;
+  Poster: string;
+  Ratings: string[];
+  Metascore: string;
+  imdbRating: string;
+  imdbVotes: string;
+  imdbID: string;
+  Type: string;
+  DVD: string;
+  BoxOffice: string;
+  Production: string;
+  Website: string;
+  Response: string;
+}
+
 
 // An interface used to unwarp json file
 interface GetResponse {
@@ -41,4 +69,21 @@ export class MovieService {
       map(response => response.Search)
     );
   }
+
+  // A feasible solution to let the event pass over outlet (when user click the search button
+  // in the header component, the event will pass into the outlet and the MovieBox component will
+  // react and display the movie)
+  private emitChangeSource = new Subject<any>();
+  changeEmitted$ = this.emitChangeSource.asObservable();
+  emitChange(change: any) {
+    this.emitChangeSource.next(change);
+  }
+
+  // Get movie detailed info based on its imdb id
+  getMovieByImdbId(imdbID: number): Observable<movieInterface> {
+    console.log("Search movie by id: ", imdbID);
+    let searchMovieByIdUrl: string = `http://www.omdbapi.com/?i=${imdbID}&apikey=a9b731fa`;
+    return this.httpClient.get<movieInterface>(searchMovieByIdUrl);
+  }
+
 }
