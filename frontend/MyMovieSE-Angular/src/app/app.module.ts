@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -15,6 +16,8 @@ import { SearchResultBarComponent } from './components/search-result-bar/search-
 import { MovieService } from './services/movie.service';
 import { MovieSnapshotComponent } from './components/movie-snapshot/movie-snapshot.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 // Use the NgModule annotation to define a module by passing an object
 @NgModule({
@@ -29,10 +32,13 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     SortNavBarComponent,
     SearchResultBarComponent,
     MovieSnapshotComponent,
-    PaginationComponent
+    PaginationComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     AppRoutingModule
   ],
