@@ -20,6 +20,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
+import { AdvertisingComponent } from './components/advertising/advertising.component';
 
 const appRoutes: Routes = [
   { path: ":movie_id", redirectTo: 'movie/:movie_id', pathMatch: 'full'},
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     LoginComponent,
     NotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    AdvertisingComponent
   ],
   imports: [
     BrowserModule,

@@ -12,13 +12,9 @@ a {
 a:hover {
     color: #fff;
     background-color: #007bff;
-    padding: .375rem .75rem;
+    padding: .375rem .5rem;
     border-radius: .25rem;;
 }
-
-.gradient-color {
-    background: linear-gradient(to left, rgb(18, 120, 246), rgb(0, 180, 170));
-} 
 
 .search-box {
     background: #f1f1f1;

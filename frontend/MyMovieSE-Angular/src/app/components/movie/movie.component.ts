@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { MovieService, movieInterface } from 'src/app/services/movie.service';
+import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
   selector: 'app-movie',
@@ -19,11 +19,9 @@ export class MovieComponent implements OnInit {
       this.movieService.getMovieByImdbId(params['movie_id']).subscribe(
         data => {
           this.movie = data;
-          console.log("movie: ", data);
         }
       );
       if(!this.movie) {
-        console.log("Something wrong happened!!!")
         this.router.navigate(['/not-found']);
       }
     });

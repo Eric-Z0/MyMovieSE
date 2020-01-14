@@ -81,7 +81,6 @@ export class MovieService {
 
   // Get movie detailed info based on its imdb id
   getMovieByImdbId(imdbID: number): Observable<movieInterface> {
-    console.log("Search movie by id: ", imdbID);
     let searchMovieByIdUrl: string = `http://www.omdbapi.com/?i=${imdbID}&apikey=a9b731fa`;
     return this.httpClient.get<movieInterface>(searchMovieByIdUrl);
   }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService, movieSnapshotInterface } from 'src/app/services/movie.service';
-import { Movie } from 'src/app/common/movie';
 
 @Component({
   selector: 'app-movie-box',
@@ -88,12 +87,6 @@ export class MovieBoxComponent implements OnInit {
   pageLoadClick(pageNumer: number) {
     this.loadCurrentMovieSnapshots(pageNumer);
     this.calCurrentPageNumberArray(pageNumer);
-  }
-
-  // For testing data binding
-  increment(title: string) {
-    console.log("Movie Title: ", title);
-    this.numOfResults += 1;
   }
 
   // Modify the load function to load more than 10 data
