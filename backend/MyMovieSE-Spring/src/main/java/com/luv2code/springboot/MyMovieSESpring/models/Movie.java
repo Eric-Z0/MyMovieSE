@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name="movie", uniqueConstraints = { @UniqueConstraint(columnNames = "title")})
+@Table(name="movie", uniqueConstraints = { @UniqueConstraint(columnNames = "imdbID")})
 public class Movie {
 
 	@Id
