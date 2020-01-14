@@ -11,6 +11,7 @@ export class MovieBoxComponent implements OnInit {
   // Note: need to initialize the data to
   movieSnapshots: Array<movieSnapshotInterface> = [];
   numOfResults: number = 0;
+  numOfSearchFuncCalls: number = 1;
 
   // Set up the variables for pagination
   numOfPageBtns: number = 5;
@@ -19,15 +20,20 @@ export class MovieBoxComponent implements OnInit {
   nBtnEnabled: boolean;
 
   currentPage: number = 1;
-  moviesPerPage: number = 5;  // this variable will be replaced by a larger number later 
+  moviesPerPage: number = 10;  // this variable will be replaced by a larger number later 
   totalNumOfPages: number;
   indexOfFirstMovie: number;
   indexOfLastMovie: number;
   currentMovieSnapshots: Array<movieSnapshotInterface>;
   
+  // By subscribing a observable event, the movie-box component can react
+  // with the click done in the search bar even thought there is outlet between them.
   constructor(private movieService: MovieService) { 
     this.movieService.changeEmitted$.subscribe(titleVal => {
-      this.searchMovieByTitle(titleVal);
+      // A hard coded way to load more results, this part needs to be modified in the future
+      for(let index=1; index <= 5; index++) {
+        this.searchMovieByTitle(titleVal, index);
+      }
     });
   }
 
@@ -89,6 +95,7 @@ export class MovieBoxComponent implements OnInit {
     this.calCurrentPageNumberArray(pageNumer);
   }
 
+  /*
   // Modify the load function to load more than 10 data
   loadMovieSnapshots(title: string, pageNum: number) {
     this.movieService.getMovieSnapshot(title, pageNum).subscribe(
@@ -111,17 +118,20 @@ export class MovieBoxComponent implements OnInit {
         }
     );
   }
+  */
 
-  searchMovieByTitle(title: string) {
-    this.movieService.getMovieSnapshot(title).subscribe(
+  searchMovieByTitle(title: string, pageNum:number) {
+    this.movieService.getMovieSnapshot(title, pageNum).subscribe(
       data => {
-        this.movieSnapshots = data;
+        this.movieSnapshots = this.movieSnapshots.concat(data.Search);
         this.loadCurrentMovieSnapshots(this.currentPage);
+        this.calTotalNumOfPages();
+        this.calCurrentPageNumberArray(this.currentPage);
         if(data != null) {
-          this.numOfResults = data.length;
+          this.numOfResults += data.Search.length;
         }
         else {
-          this.numOfResults = 0;
+          this.numOfResults += 0;
         }
       }
     );
