@@ -9,6 +9,13 @@ a {
     margin-right: 15px;
 }
 
+.focus {
+    color: #fff;
+    background-color: #007bff;
+    padding: .375rem .5rem;
+    border-radius: .25rem;;
+}
+
 a:hover {
     color: #fff;
     background-color: #007bff;
