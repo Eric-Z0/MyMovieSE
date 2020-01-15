@@ -16,10 +16,4 @@ export class MovieSnapshotComponent implements OnInit {
   ngOnInit() {
   }
 
-  // When users click a movie snapshot, a detailed information of that movie will be 
-  // displayed under another url with the condition that user has been logged in.
-  cardClick(){
-    console.log("this card is clicked");
-  }
-
 }

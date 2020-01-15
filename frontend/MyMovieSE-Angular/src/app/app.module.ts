@@ -21,8 +21,10 @@ import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { AdvertisingComponent } from './components/advertising/advertising.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const appRoutes: Routes = [
+  { path: 'profile', component: ProfileComponent},
   { path: ":movie_id", redirectTo: 'movie/:movie_id', pathMatch: 'full'},
   { path: 'movie/:movie_id', component: MovieComponent},
   { path: '', component: HomeComponent},
@@ -48,7 +50,8 @@ const appRoutes: Routes = [
     LoginComponent,
     NotFoundComponent,
     HomeComponent,
-    AdvertisingComponent
+    AdvertisingComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

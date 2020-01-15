@@ -1,0 +1,20 @@
+<div class="jumbotron mb-0">
+    <div class="container" *ngIf="currentUser; else logInFirst">
+        <h1 class="mb-md-4">{{ currentUser.username }} Profile</h1>
+        <p>
+            <strong>Token:</strong>
+            {{ currentUser.accessToken.substring(0, 20) }} ...
+            {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
+        </p>
+        <p><strong>Email:</strong> {{ currentUser.email }}</p>
+        <p><strong>Role(s):</strong> {{ currentUser.roles }}</p>
+        <p>Recently Browsed:</p>
+    </div>
+    <ng-template #logInFirst>
+        <div class="container">
+            <h1 class="mb-md-5">Log In to See Profile Information</h1>
+            <p>Profile includes basic information such as user name, email and token assigned</p>
+            <p>Profile also includes user browse history</p>
+        </div>
+    </ng-template>
+</div>
