@@ -4,7 +4,7 @@
   </div>
   <div class="col-md-6">
     <div class="input-group">
-      <input #movieTitle type="text" class="form-control" placeholder="Search">
+      <input (keydown.enter)="search(movieTitle.value)" #movieTitle type="text" class="form-control" placeholder="Search">
       <div class="input-group-append">
         <button class="btn btn-success" (click)="search(movieTitle.value)"><i class="fa fa-search"></i></button>
       </div>
