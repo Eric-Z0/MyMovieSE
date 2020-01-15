@@ -69,7 +69,6 @@ public class MovieController {
 		{
 			String movieUrl = String.format("http://www.omdbapi.com/?s=%s&apikey=a9b731fa", best50MoviesP2[index]);
 			String result = restTemplate.getForObject(movieUrl, String.class);
-			System.out.println();
 			
 			try {
 				msRes = mapper.readValue(result, MovieSnapshotResponse.class);
@@ -139,6 +138,34 @@ public class MovieController {
 	
 	*/
 	
+	@GetMapping("/addMsToDB/s={title}")
+	public void addMovieSnapshotToDB(@PathVariable("title") String title) {
+		
+		RestTemplate restTemplate = new RestTemplate();
+		ObjectMapper mapper = new ObjectMapper();
+		MovieSnapshotResponse msRes;
+		
+		String movieUrl = String.format("http://www.omdbapi.com/?s=%s&apikey=a9b731fa", title);
+		String result = restTemplate.getForObject(movieUrl, String.class);
+		
+		try {
+			msRes = mapper.readValue(result, MovieSnapshotResponse.class);
+			MovieSnapshot[] msArray = msRes.getSearch();
+			
+			for(int i=0; i<msArray.length; i++) {
+				movieSnapshotRepository.save(msArray[i]);
+			}
+			
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("Load Movie Snapshot");
+	}
+	
+	
 	// When the front end starts this url will be requested
 	@GetMapping("/upload")
 	public String uploadMovieCollection() {
@@ -196,42 +223,45 @@ public class MovieController {
 			@PathVariable("country") String country,
 			@PathVariable("lang") String lang) 
 	{
+		
 		List<Movie> movies = movieRepository.findAll();
 		
-		if(category != null && !category.isEmpty()) {
-			
+		if(!category.equals("All") && !category.isEmpty())
+		{
 			Stream<Movie> streamMovies =  movies.stream().filter(m -> m.getType().equals(category));
 			movies = streamMovies.collect(Collectors.toList());
-			//System.out.println("Cat is selected!");
+			System.out.println("Cat is selected!");
 		}
 		
-		if(genre != null && !genre.isEmpty()) {
-			
-			Stream<Movie> streamMovies =  movies.stream().filter(m -> m.getGenre().equals(genre));
+		if(!genre.equals("All") && !genre.isEmpty()) 
+		{
+			Stream<Movie> streamMovies =  movies.stream().filter(m -> m.getGenre().contains(genre));
 			movies = streamMovies.collect(Collectors.toList());
-			//System.out.println("genre is selected!");
+			System.out.println("genre is selected!");
 		}
 		
-		if(year != null && !year.isEmpty()) {
+		if(!year.equals("All") && !year.isEmpty()) {
 			
 			Stream<Movie> streamMovies =  movies.stream().filter(m -> m.getYear().equals(year));
 			movies = streamMovies.collect(Collectors.toList());
-			//System.out.println("year is selected!");
+			System.out.println("year is selected!");
 		}
 		
-		if(country != null && !country.isEmpty()) {
-			
-			Stream<Movie> streamMovies =  movies.stream().filter(m -> m.getCountry().equals(country));
+		if(!country.equals("All") && !country.isEmpty())
+		{
+			Stream<Movie> streamMovies =  movies.stream().filter(m -> m.getCountry().contains(country));
 			movies = streamMovies.collect(Collectors.toList());
-			//System.out.println("country is selected!");
+			System.out.println("country is selected!");
 		}
 		
-		if(lang != null && !lang.isEmpty()) {
-			
-			Stream<Movie> streamMovies =  movies.stream().filter(m -> m.getLanguage().equals(lang));
+		if(!lang.equals("All") && !lang.isEmpty()) 
+		{
+			Stream<Movie> streamMovies =  movies.stream().filter(m -> m.getLanguage().contains(lang));
 			movies = streamMovies.collect(Collectors.toList());
-			//System.out.println("lang is selected!");
+			System.out.println("lang is selected!");
 		}
+		
+		ObjectMapper mapper = new ObjectMapper();
 		
 		if(movies.size() != 0) {
 			
@@ -252,21 +282,34 @@ public class MovieController {
 			
 			MovieSnapshotResponse msRes = new MovieSnapshotResponse();
 			msRes.setSearch(msArray);
-			msRes.setTotalResults("" + msArray.length);
+			msRes.setTotalResults(String.valueOf(msArray.length));
 			msRes.setResponse("True");
 			
-			ObjectMapper mapper = new ObjectMapper();
-			
 			try {
-				String jsonStr = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(msRes);
-				return jsonStr;
+				System.out.println("Number of movies found: " + msList.size());
+				String jsonResStr = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(msRes);
+				return jsonResStr;
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
 			
 		}
 		
-		return "No matching movie found";
+		// If there is no matching movies found
+		String jsonResNoMatchStr = null;
+		MovieSnapshotResponse msRes = new MovieSnapshotResponse();
+		msRes.setSearch(null);
+		msRes.setTotalResults(String.valueOf(0));
+		msRes.setResponse("True");
+		
+		try {
+			jsonResNoMatchStr = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(msRes);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("No matching movies found");
+		return jsonResNoMatchStr;
 	}
 	
 

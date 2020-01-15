@@ -26,7 +26,7 @@ export class MovieBoxComponent implements OnInit {
   indexOfLastMovie: number;
   currentMovieSnapshots: Array<movieSnapshotInterface>;
 
-  loadDataFromSpringREST: boolean = false;
+  noMatchingMovies: boolean = false;
   
   constructor(private movieService: MovieService) { 
     // By subscribing a observable event, the movie-box component can react
@@ -49,12 +49,13 @@ export class MovieBoxComponent implements OnInit {
 
   // Similar to @PostConstruct
   ngOnInit() {
-    this.loadInitMovieCollection();
+    //this.loadInitMovieCollection();
   }
 
   loadCurrentMovieSnapshots(currPage:number) {
     this.indexOfLastMovie = currPage * this.moviesPerPage;
     this.indexOfFirstMovie = this.indexOfLastMovie - this.moviesPerPage;
+    console.log("Movie SNAPSHOTS: ", this.movieSnapshots);
     this.currentMovieSnapshots = this.movieSnapshots.slice(this.indexOfFirstMovie, this.indexOfLastMovie);
     //console.log("Load current movie array: ", this.currentMovieSnapshots);
   }
@@ -102,6 +103,7 @@ export class MovieBoxComponent implements OnInit {
     this.calCurrentPageNumberArray(pageNumer);
   }
 
+  // NOTE: this function may be bandoned since it is similar to the func 'loadMovieCollectionAfterFilter'
   // Load initial movie collection data from Spring rest api when front end angular starts
   loadInitMovieCollection() {
     this.movieService.getMovieCollection().subscribe(
@@ -110,7 +112,6 @@ export class MovieBoxComponent implements OnInit {
         this.loadCurrentMovieSnapshots(this.currentPage);
         this.calTotalNumOfPages();
         this.calCurrentPageNumberArray(this.currentPage);
-        this.loadDataFromSpringREST = true;
         if(data != null) {
           this.numOfResults += data.Search.length;
         }
@@ -121,19 +122,27 @@ export class MovieBoxComponent implements OnInit {
     );
   }
 
+  // Return a collection of movies based on the criteria selected
   loadMovieCollectionAfterFilter(filterArr: string[]) {
     this.movieService.getMovieCollectionAfterFilter(filterArr).subscribe(
       data => {
-        this.movieSnapshots = data.Search;
-        this.loadCurrentMovieSnapshots(this.currentPage);
-        this.calTotalNumOfPages();
-        this.calCurrentPageNumberArray(this.currentPage);
-        this.loadDataFromSpringREST = true;
-        if(data != null) {
-          this.numOfResults = data.Search.length;
-        }
-        else {
-          this.numOfResults += 0;
+        if(data.totalResults == 0) {
+          this.noMatchingMovies = true;
+          this.movieSnapshots = [];
+          this.calTotalNumOfPages();
+          this.calCurrentPageNumberArray(this.currentPage);
+        } else {
+          this.noMatchingMovies = false;
+          this.movieSnapshots = data.Search;
+          this.loadCurrentMovieSnapshots(this.currentPage);
+          this.calTotalNumOfPages();
+          this.calCurrentPageNumberArray(this.currentPage);
+          if(data != null) {
+            this.numOfResults = data.Search.length;
+          }
+          else {
+            this.numOfResults += 0;
+          }
         }
       }
     );
@@ -142,11 +151,6 @@ export class MovieBoxComponent implements OnInit {
   searchMovieByTitle(title: string, pageNum:number) {
     this.movieService.getMovieSnapshot(title, pageNum).subscribe(
       data => {
-        // Overwrite the movie data fetched from Spring backend 
-        if(this.loadDataFromSpringREST) {
-          this.movieSnapshots = [];
-          this.loadDataFromSpringREST = false;
-        }
         this.movieSnapshots = this.movieSnapshots.concat(data.Search);
         this.loadCurrentMovieSnapshots(this.currentPage);
         this.calTotalNumOfPages();

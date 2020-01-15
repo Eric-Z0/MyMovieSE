@@ -51,7 +51,7 @@ export class SortNavBarComponent implements OnInit {
   langFlagArr: boolean[] = [this.langAllFlag, this.enFlag, this.fnFlag, this.geFlag];
 
   // A filter array stores all the criteria selected
-  filterCollection: string[] = new Array(5);
+  filterCollection: string[] = ["All", "All", "All", "All", "All"];
 
   constructor(private movieService: MovieService) { }
 
