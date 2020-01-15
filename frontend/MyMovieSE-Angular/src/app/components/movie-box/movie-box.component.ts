@@ -20,16 +20,20 @@ export class MovieBoxComponent implements OnInit {
   nBtnEnabled: boolean;
 
   currentPage: number = 1;
-  moviesPerPage: number = 10;  // this variable will be replaced by a larger number later 
+  moviesPerPage: number = 10;
   totalNumOfPages: number;
   indexOfFirstMovie: number;
   indexOfLastMovie: number;
   currentMovieSnapshots: Array<movieSnapshotInterface>;
+
+  loadDataFromSpringREST: boolean = false;
   
   // By subscribing a observable event, the movie-box component can react
   // with the click done in the search bar even thought there is outlet between them.
   constructor(private movieService: MovieService) { 
     this.movieService.changeEmitted$.subscribe(titleVal => {
+      // Clear the movie snapshots data loaded preiously since we only want to see NEW results
+      this.movieSnapshots = [];
       // A hard coded way to load more results, this part needs to be modified in the future
       for(let index=1; index <= 5; index++) {
         this.searchMovieByTitle(titleVal, index);
@@ -39,10 +43,7 @@ export class MovieBoxComponent implements OnInit {
 
   // Similar to @PostConstruct
   ngOnInit() {
-    // let defMovieTitle: string = "Batman";
-    // for(let index=1; index<= 3; index++){
-    //   this.loadMovieSnapshots(defMovieTitle, index);
-    // }
+    this.loadInitMovieCollection();
   }
 
   loadCurrentMovieSnapshots(currPage:number) {
@@ -95,34 +96,33 @@ export class MovieBoxComponent implements OnInit {
     this.calCurrentPageNumberArray(pageNumer);
   }
 
-  /*
-  // Modify the load function to load more than 10 data
-  loadMovieSnapshots(title: string, pageNum: number) {
-    this.movieService.getMovieSnapshot(title, pageNum).subscribe(
-        data => {
-          this.movieSnapshots = this.movieSnapshots.concat(data);
-          //console.log("current moview arr: ", this.movieSnapshots);
-          // Note: the following three function calls is only a TEMPORARY solution!
-          // Need to learn more about 'Promise' and 'Observable' and update the solution later
-          this.loadCurrentMovieSnapshots(this.currentPage);
-          this.calTotalNumOfPages();
-          this.calCurrentPageNumberArray(this.currentPage);
-          if(data != null) {
-            this.numOfResults += data.length;
-            //console.log("current data len: ", data.length);
-            //console.log("current numOfResults: ", this.numOfResults);
-          }
-          else {
-            this.numOfResults += 0;
-          }
+  // Load initial movie collection data from Spring rest api when front end angular starts
+  loadInitMovieCollection() {
+    this.movieService.getMovieCollection().subscribe(
+      data => {
+        this.movieSnapshots = this.movieSnapshots.concat(data.Search);
+        this.loadCurrentMovieSnapshots(this.currentPage);
+        this.calTotalNumOfPages();
+        this.calCurrentPageNumberArray(this.currentPage);
+        this.loadDataFromSpringREST = true;
+        if(data != null) {
+          this.numOfResults += data.Search.length;
         }
+        else {
+          this.numOfResults += 0;
+        }
+      }
     );
   }
-  */
 
   searchMovieByTitle(title: string, pageNum:number) {
     this.movieService.getMovieSnapshot(title, pageNum).subscribe(
       data => {
+        // Overwrite the movie data fetched from Spring backend 
+        if(this.loadDataFromSpringREST) {
+          this.movieSnapshots = [];
+          this.loadDataFromSpringREST = false;
+        }
         this.movieSnapshots = this.movieSnapshots.concat(data.Search);
         this.loadCurrentMovieSnapshots(this.currentPage);
         this.calTotalNumOfPages();

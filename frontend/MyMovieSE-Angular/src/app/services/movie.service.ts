@@ -64,6 +64,11 @@ export class MovieService {
   //   );
   // }
 
+  getMovieCollection() {
+    let url: string = 'http://localhost:8080/api/test/upload';
+    return this.httpClient.get<GetMovieSearchResponse>(url);
+  }
+
   // Get movie snapshot(s) based on movie title
   getMovieSnapshot(movieTile: string, pageNum:number=1): Observable<GetMovieSearchResponse> {
     let searchMovieByTitleUrl: string = `http://www.omdbapi.com/?s=${movieTile}&page=${pageNum}&apikey=a9b731fa`;

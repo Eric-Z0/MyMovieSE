@@ -9,6 +9,7 @@ import { MovieService } from 'src/app/services/movie.service';
 export class HeaderComponent implements OnInit {
 
   userLoggedIn: boolean = false;
+  prevSearchVal: string = "empty";
 
   constructor(private movieService: MovieService) { }
 
@@ -16,7 +17,9 @@ export class HeaderComponent implements OnInit {
   }
 
   search(movieTitle: string) {
-    this.movieService.emitChange(movieTitle);
+    if(movieTitle != this.prevSearchVal) {
+      this.movieService.emitChange(movieTitle);
+    }
   }
 
   logIn() {
