@@ -47,7 +47,9 @@ export class SortNavBarComponent implements OnInit {
   ngOnInit() {
   }
 
-  FilterByCategory(category: string) {
+  
+
+  filterByCategory(category: string) {
 
     for(let index=0; index<this.categoryFlagArr.length; index++) {
       this.categoryFlagArr[index] = false;
@@ -65,10 +67,11 @@ export class SortNavBarComponent implements OnInit {
         break;
     }
 
+
     console.log(category);
   }
 
-  FilterByGenre(genre: string) {
+  filterByGenre(genre: string) {
 
     for(let index=0; index<this.genreFlagArr.length; index++) {
       this.genreFlagArr[index] = false;
@@ -97,7 +100,7 @@ export class SortNavBarComponent implements OnInit {
     console.log(genre);
   }
 
-  FilterByYear(year: string) {
+  filterByYear(year: string) {
 
     for(let index=0; index<this.yearFlagArr.length; index++) {
       this.yearFlagArr[index] = false;
@@ -123,7 +126,7 @@ export class SortNavBarComponent implements OnInit {
     console.log(year);
   }
 
-  FilterByCountry(country: string) {
+  filterByCountry(country: string) {
     if(country == "USA") {
       this.usaFlag = true;
       this.europeFlag = false;
@@ -135,7 +138,7 @@ export class SortNavBarComponent implements OnInit {
     console.log(country);
   }
 
-  FilterByLanguage(lang: string) {
+  filterByLanguage(lang: string) {
     if(lang == "English") {
       this.enFlag = true;
       this.fnFlag = false;

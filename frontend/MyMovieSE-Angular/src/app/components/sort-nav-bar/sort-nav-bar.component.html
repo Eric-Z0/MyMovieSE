@@ -3,36 +3,36 @@
         <dl class="row">
             <dt class="col-md-2 mb-md-3"><strong>Category:</strong></dt>
             <dd class="col-md-10 mb-md-3">
-                <a [ngClass]="{'focus': categoryFlagArr[0]}" (click)="FilterByCategory('Movie')">Movie</a>
-                <a [ngClass]="{'focus': categoryFlagArr[1]}" (click)="FilterByCategory('Series')">Series</a>
-                <a [ngClass]="{'focus': categoryFlagArr[2]}" (click)="FilterByCategory('Episode')">Episode</a>
+                <a [ngClass]="{'focus': categoryFlagArr[0]}" (click)="filterByCategory('Movie')">Movie</a>
+                <a [ngClass]="{'focus': categoryFlagArr[1]}" (click)="filterByCategory('Series')">Series</a>
+                <a [ngClass]="{'focus': categoryFlagArr[2]}" (click)="filterByCategory('Episode')">Episode</a>
             </dd>
             <dt class="col-md-2 mb-md-3"><strong>Genre:</strong></dt>
             <dd class="col-md-10 mb-md-3">
-                <a [ngClass]="{'focus': genreFlagArr[0]}" (click)="FilterByGenre('Animation')">Animation</a>
-                <a [ngClass]="{'focus': genreFlagArr[1]}" (click)="FilterByGenre('Adventure')">Adventure</a>
-                <a [ngClass]="{'focus': genreFlagArr[2]}" (click)="FilterByGenre('Comedy')">Comedy</a>
-                <a [ngClass]="{'focus': genreFlagArr[3]}" (click)="FilterByGenre('Family')">Family</a>
-                <a [ngClass]="{'focus': genreFlagArr[4]}" (click)="FilterByGenre('Fantasy')">Fantasy</a>
-                <a [ngClass]="{'focus': genreFlagArr[5]}" (click)="FilterByGenre('Musical')">Musical</a>
+                <a [ngClass]="{'focus': genreFlagArr[0]}" (click)="filterByGenre('Animation')">Animation</a>
+                <a [ngClass]="{'focus': genreFlagArr[1]}" (click)="filterByGenre('Adventure')">Adventure</a>
+                <a [ngClass]="{'focus': genreFlagArr[2]}" (click)="filterByGenre('Comedy')">Comedy</a>
+                <a [ngClass]="{'focus': genreFlagArr[3]}" (click)="filterByGenre('Family')">Family</a>
+                <a [ngClass]="{'focus': genreFlagArr[4]}" (click)="filterByGenre('Fantasy')">Fantasy</a>
+                <a [ngClass]="{'focus': genreFlagArr[5]}" (click)="filterByGenre('Musical')">Musical</a>
             </dd>
             <dt class="col-md-2 mb-md-3"><strong>Year:</strong></dt>
             <dd class="col-md-10 mb-md-3">
-                <a [ngClass]="{'focus': yearFlagArr[0]}" (click)="FilterByYear('2019')">2019</a>
-                <a [ngClass]="{'focus': yearFlagArr[1]}" (click)="FilterByYear('2018')">2018</a>
-                <a [ngClass]="{'focus': yearFlagArr[2]}" (click)="FilterByYear('2017')">2017</a>
-                <a [ngClass]="{'focus': yearFlagArr[3]}" (click)="FilterByYear('2016')">2016</a>
-                <a [ngClass]="{'focus': yearFlagArr[4]}" (click)="FilterByYear('2015')">2015</a>
+                <a [ngClass]="{'focus': yearFlagArr[0]}" (click)="filterByYear('2019')">2019</a>
+                <a [ngClass]="{'focus': yearFlagArr[1]}" (click)="filterByYear('2018')">2018</a>
+                <a [ngClass]="{'focus': yearFlagArr[2]}" (click)="filterByYear('2017')">2017</a>
+                <a [ngClass]="{'focus': yearFlagArr[3]}" (click)="filterByYear('2016')">2016</a>
+                <a [ngClass]="{'focus': yearFlagArr[4]}" (click)="filterByYear('2015')">2015</a>
             </dd>
             <dt class="col-md-2 mb-md-3"><strong>Country:</strong></dt>
             <dd class="col-md-10 mb-md-3">
-                <a [ngClass]="{'focus': usaFlag}" (click)="FilterByCountry('USA')">USA</a>
-                <a [ngClass]="{'focus': europeFlag}" (click)="FilterByCountry('Europe')">Europe</a>
+                <a [ngClass]="{'focus': usaFlag}" (click)="filterByCountry('USA')">USA</a>
+                <a [ngClass]="{'focus': europeFlag}" (click)="filterByCountry('Europe')">Europe</a>
             </dd>
             <dt class="col-md-2"><strong>Language:</strong></dt>
             <dd class="col-md-10">
-                <a [ngClass]="{'focus': enFlag}" (click)="FilterByLanguage('English')">English</a>
-                <a [ngClass]="{'focus': fnFlag}" (click)="FilterByLanguage('French')">French</a>
+                <a [ngClass]="{'focus': enFlag}" (click)="filterByLanguage('English')">English</a>
+                <a [ngClass]="{'focus': fnFlag}" (click)="filterByLanguage('French')">French</a>
             </dd>
         </dl>
     </div>
