@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 // Defines and exports the TypeScript interface for movieSnapshot object
@@ -57,16 +57,16 @@ export class MovieService {
   
   constructor(private httpClient: HttpClient) { }
 
-  // Get a list of movies with no filter applied
-  // getMovieSnapshotList(): Observable<movieSnapshotInterface[]>{
-  //   return this.httpClient.get<GetResponse>(this.testUrl).pipe(
-  //     map(response => response.Search)
-  //   );
-  // }
-
+  // Get movie collection from Spring backend database
   getMovieCollection() {
     let url: string = 'http://localhost:8080/api/test/upload';
     return this.httpClient.get<GetMovieSearchResponse>(url);
+  }
+
+  getMovieCollectionAfterFilter(filter: string[]) {
+    let filterUrl: string = `http://localhost:8080/api/test/filter/c=${filter[0]}/g=${filter[1]}/y=${filter[2]}/r=${filter[3]}/l=${filter[4]}/`;
+    console.log(filterUrl);
+    return this.httpClient.get<GetMovieSearchResponse>(filterUrl);
   }
 
   // Get movie snapshot(s) based on movie title
@@ -74,6 +74,15 @@ export class MovieService {
     let searchMovieByTitleUrl: string = `http://www.omdbapi.com/?s=${movieTile}&page=${pageNum}&apikey=a9b731fa`;
     return this.httpClient.get<GetMovieSearchResponse>(searchMovieByTitleUrl);
   }
+
+  // Get movie detailed info based on its imdb id
+  getMovieByImdbId(imdbID: number): Observable<movieInterface> {
+    let searchMovieByIdUrl: string = `http://www.omdbapi.com/?i=${imdbID}&apikey=a9b731fa`;
+    return this.httpClient.get<movieInterface>(searchMovieByIdUrl);
+  }
+
+
+  //-----------------------------------------------------------------------------
 
   // A feasible solution to let the event pass over outlet (when user click the search button
   // in the header component, the event will pass into the outlet and the MovieBox component will
@@ -84,10 +93,18 @@ export class MovieService {
     this.emitChangeSource.next(change);
   }
 
-  // Get movie detailed info based on its imdb id
-  getMovieByImdbId(imdbID: number): Observable<movieInterface> {
-    let searchMovieByIdUrl: string = `http://www.omdbapi.com/?i=${imdbID}&apikey=a9b731fa`;
-    return this.httpClient.get<movieInterface>(searchMovieByIdUrl);
+  //-----------------------------------------------------------------------------
+
+  private movieFilterSource = new BehaviorSubject<string[]>(['', '', '', '','']);
+  movieFilter$ = this.movieFilterSource.asObservable();
+
+  // Event movie selection criteria clicked
+  movieCriteriaClicked(filterArr: string[]) {
+    this.movieFilterSource.next(filterArr);
   }
+
+  //----------------------------------------------------------------------------
+
+
 
 }

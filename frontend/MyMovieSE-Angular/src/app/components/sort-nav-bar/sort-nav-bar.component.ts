@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
   selector: 'app-sort-nav-bar',
@@ -7,47 +8,56 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class SortNavBarComponent implements OnInit {
 
-  @Output() onSearch = new EventEmitter();
-
   // Set up the variables to implement the 'selected' effect
   // Flags for movie category
+  cateAllFlag: boolean = false;
   movieFlag: boolean = false;
   seriesFlag: boolean = false;
   episodeFlag: boolean = false;
-  categoryFlagArr: boolean[] = [this.movieFlag, this.seriesFlag, this.episodeFlag];
+  categoryFlagArr: boolean[] = [this.cateAllFlag, this.movieFlag, this.seriesFlag, this.episodeFlag];
 
   // Flags for movie genre
+  genreAllFlag: boolean = false;
   animationFlag: boolean = false;
   adventureFlag: boolean = false;
   comedyFlag: boolean = false;
   familyFlag: boolean = false;
   fantasyFlag: boolean = false;
   musicalFlag: boolean = false;
-  genreFlagArr: boolean[] = [this.animationFlag, this.adventureFlag, this.comedyFlag, this.familyFlag, this.fantasyFlag, this.musicalFlag];
+  genreFlagArr: boolean[] = [this.genreAllFlag, this.animationFlag, this.adventureFlag, this.comedyFlag, this.familyFlag, this.fantasyFlag, this.musicalFlag];
 
   // Flags for movie year
+  yearAllFlag: boolean = false;
   m2019Flag: boolean = false;
   m2018Flag: boolean = false;
   m2017Flag: boolean = false;
   m2016Flag: boolean = false;
   m2015Flag: boolean = false;
-  yearFlagArr: boolean[] = [this.m2019Flag, this.m2018Flag, this.m2017Flag, this.m2016Flag, this.m2015Flag];
+  yearFlagArr: boolean[] = [this.yearAllFlag, this.m2019Flag, this.m2018Flag, this.m2017Flag, this.m2016Flag, this.m2015Flag];
 
   // Flags for movie country
+  conAllFlag: boolean = false;
   usaFlag: boolean = false;
   europeFlag: boolean = false;
+  countryFlagArr: boolean[] = [this.conAllFlag, this.usaFlag, this.europeFlag];
 
   // Flag for movie langauge
+  langAllFlag: boolean = false;
   enFlag: boolean = false;
   fnFlag: boolean = false;
+  langFlagArr: boolean[] = [this.langAllFlag, this.enFlag, this.fnFlag];
 
+  // A filter array stores all the criteria selected
+  filterCollection: string[] = new Array(5);
 
-  constructor() { }
+  constructor(private movieService: MovieService) { }
 
   ngOnInit() {
   }
 
-  
+  getMovieAfterFilter() {
+    this.movieService.movieCriteriaClicked(this.filterCollection);
+  }
 
   filterByCategory(category: string) {
 
@@ -56,19 +66,23 @@ export class SortNavBarComponent implements OnInit {
     }
 
     switch(category) {
-      case "Movie":
+      case "All":
         this.categoryFlagArr[0] = true;
         break;
-      case "Series":
+      case "Movie":
         this.categoryFlagArr[1] = true;
         break;
-      case "Episode":
+      case "Series":
         this.categoryFlagArr[2] = true;
+        break;
+      case "Episode":
+        this.categoryFlagArr[3] = true;
         break;
     }
 
-
-    console.log(category);
+    this.filterCollection[0] = category;
+    this.getMovieAfterFilter();
+    //console.log(category);
   }
 
   filterByGenre(genre: string) {
@@ -78,26 +92,32 @@ export class SortNavBarComponent implements OnInit {
     }
 
     switch(genre) {
-      case "Animation":
+      case "All":
         this.genreFlagArr[0] = true;
         break;
-      case "Adventure":
+      case "Animation":
         this.genreFlagArr[1] = true;
         break;
-      case "Comedy":
+      case "Adventure":
         this.genreFlagArr[2] = true;
         break;
-      case "Family":
+      case "Comedy":
         this.genreFlagArr[3] = true;
         break;
-      case "Fantasy":
+      case "Family":
         this.genreFlagArr[4] = true;
         break;
-      case "Musical":
+      case "Fantasy":
         this.genreFlagArr[5] = true;
         break;
+      case "Musical":
+        this.genreFlagArr[6] = true;
+        break;
     }
-    console.log(genre);
+
+    this.filterCollection[1] = genre;
+    this.getMovieAfterFilter();
+    //console.log(genre);
   }
 
   filterByYear(year: string) {
@@ -107,46 +127,75 @@ export class SortNavBarComponent implements OnInit {
     }
 
     switch(year) {
-      case "2019":
+      case "All":
         this.yearFlagArr[0] = true;
         break;
-      case "2018":
+      case "2019":
         this.yearFlagArr[1] = true;
         break;
-      case "2017":
+      case "2018":
         this.yearFlagArr[2] = true;
         break;
-      case "2016":
+      case "2017":
         this.yearFlagArr[3] = true;
         break;
-      case "2015":
+      case "2016":
         this.yearFlagArr[4] = true;
         break;
+      case "2015":
+        this.yearFlagArr[5] = true;
+        break;
     }
-    console.log(year);
+
+    this.filterCollection[2] = year;
+    this.getMovieAfterFilter();
+    //console.log(year);
   }
 
   filterByCountry(country: string) {
-    if(country == "USA") {
-      this.usaFlag = true;
-      this.europeFlag = false;
-    } else {
-      this.usaFlag = false;
-      this.europeFlag = true;
+
+    for(let index=0; index<this.countryFlagArr.length; index++) {
+      this.countryFlagArr[index] = false;
     }
 
-    console.log(country);
+    switch(country) {
+      case "All":
+        this.countryFlagArr[0] = true;
+        break;
+      case "USA":
+        this.countryFlagArr[1] = true;
+        break;
+      case "Europe":
+        this.countryFlagArr[2] = true;
+        break;
+    }
+
+    this.filterCollection[3] = country;
+    this.getMovieAfterFilter();
+    //console.log(country);
   }
 
   filterByLanguage(lang: string) {
-    if(lang == "English") {
-      this.enFlag = true;
-      this.fnFlag = false;
-    } else {
-      this.enFlag = false;
-      this.fnFlag = true;
+
+    for(let index=0; index<this.langFlagArr.length; index++) {
+      this.langFlagArr[index] = false;
     }
-    console.log(lang);
+
+    switch(lang) {
+      case "All":
+        this.langFlagArr[0] = true;
+        break;
+      case "English":
+        this.langFlagArr[1] = true;
+        break;
+      case "French":
+        this.langFlagArr[2] = true;
+        break;
+    }
+
+    this.filterCollection[4] = lang;
+    this.getMovieAfterFilter();
+    //console.log(lang);
   }
 
 }

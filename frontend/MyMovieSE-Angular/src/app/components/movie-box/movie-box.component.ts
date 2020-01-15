@@ -28,9 +28,9 @@ export class MovieBoxComponent implements OnInit {
 
   loadDataFromSpringREST: boolean = false;
   
-  // By subscribing a observable event, the movie-box component can react
-  // with the click done in the search bar even thought there is outlet between them.
   constructor(private movieService: MovieService) { 
+    // By subscribing a observable event, the movie-box component can react
+    // with the click done in the search bar even thought there is outlet between them.
     this.movieService.changeEmitted$.subscribe(titleVal => {
       // Clear the movie snapshots data loaded preiously since we only want to see NEW results
       this.movieSnapshots = [];
@@ -39,11 +39,17 @@ export class MovieBoxComponent implements OnInit {
         this.searchMovieByTitle(titleVal, index);
       }
     });
+
+    // Observer pattern
+    this.movieService.movieFilter$.subscribe(
+      filterArr => this.loadMovieCollectionAfterFilter(filterArr)
+    );
+    
   }
 
   // Similar to @PostConstruct
   ngOnInit() {
-    this.loadInitMovieCollection();
+    //this.loadInitMovieCollection();
   }
 
   loadCurrentMovieSnapshots(currPage:number) {
@@ -107,6 +113,24 @@ export class MovieBoxComponent implements OnInit {
         this.loadDataFromSpringREST = true;
         if(data != null) {
           this.numOfResults += data.Search.length;
+        }
+        else {
+          this.numOfResults += 0;
+        }
+      }
+    );
+  }
+
+  loadMovieCollectionAfterFilter(filterArr: string[]) {
+    this.movieService.getMovieCollectionAfterFilter(filterArr).subscribe(
+      data => {
+        this.movieSnapshots = data.Search;
+        this.loadCurrentMovieSnapshots(this.currentPage);
+        this.calTotalNumOfPages();
+        this.calCurrentPageNumberArray(this.currentPage);
+        this.loadDataFromSpringREST = true;
+        if(data != null) {
+          this.numOfResults = data.Search.length;
         }
         else {
           this.numOfResults += 0;
