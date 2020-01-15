@@ -38,6 +38,9 @@ export class MovieBoxComponent implements OnInit {
       for(let index=1; index <= 5; index++) {
         this.searchMovieByTitle(titleVal, index);
       }
+      // Navigate to the movie section so that users do not have to scroll up and down
+      window.location.hash = '';
+      window.location.hash = "searchResult";
     });
 
     // Observer pattern
@@ -55,7 +58,6 @@ export class MovieBoxComponent implements OnInit {
   loadCurrentMovieSnapshots(currPage:number) {
     this.indexOfLastMovie = currPage * this.moviesPerPage;
     this.indexOfFirstMovie = this.indexOfLastMovie - this.moviesPerPage;
-    console.log("Movie SNAPSHOTS: ", this.movieSnapshots);
     this.currentMovieSnapshots = this.movieSnapshots.slice(this.indexOfFirstMovie, this.indexOfLastMovie);
     //console.log("Load current movie array: ", this.currentMovieSnapshots);
   }
@@ -101,6 +103,9 @@ export class MovieBoxComponent implements OnInit {
   pageLoadClick(pageNumer: number) {
     this.loadCurrentMovieSnapshots(pageNumer);
     this.calCurrentPageNumberArray(pageNumer);
+    // Navigate to the movie section so that users do not have to scroll up and down
+    window.location.hash = '';
+    window.location.hash = "searchResult";
   }
 
   // NOTE: this function may be bandoned since it is similar to the func 'loadMovieCollectionAfterFilter'
