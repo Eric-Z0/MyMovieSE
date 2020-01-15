@@ -31,13 +31,16 @@
             <dd class="col-md-10 mb-md-3">
                 <a [ngClass]="{'focus': countryFlagArr[0]}" (click)="filterByCountry('All')">All</a>
                 <a [ngClass]="{'focus': countryFlagArr[1]}" (click)="filterByCountry('USA')">USA</a>
-                <a [ngClass]="{'focus': countryFlagArr[2]}" (click)="filterByCountry('Europe')">Europe</a>
+                <a [ngClass]="{'focus': countryFlagArr[2]}" (click)="filterByCountry('Canada')">Canada</a>
+                <a [ngClass]="{'focus': countryFlagArr[3]}" (click)="filterByCountry('France')">France</a>
+                <a [ngClass]="{'focus': countryFlagArr[4]}" (click)="filterByCountry('Japan')">Japan</a>
             </dd>
             <dt class="col-md-2"><strong>Language:</strong></dt>
             <dd class="col-md-10">
                 <a [ngClass]="{'focus': langFlagArr[0]}" (click)="filterByLanguage('All')">All</a>
                 <a [ngClass]="{'focus': langFlagArr[1]}" (click)="filterByLanguage('English')">English</a>
                 <a [ngClass]="{'focus': langFlagArr[2]}" (click)="filterByLanguage('French')">French</a>
+                <a [ngClass]="{'focus': langFlagArr[3]}" (click)="filterByLanguage('German')">German</a>
             </dd>
         </dl>
     </div>

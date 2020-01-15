@@ -49,7 +49,7 @@ export class MovieBoxComponent implements OnInit {
 
   // Similar to @PostConstruct
   ngOnInit() {
-    //this.loadInitMovieCollection();
+    this.loadInitMovieCollection();
   }
 
   loadCurrentMovieSnapshots(currPage:number) {

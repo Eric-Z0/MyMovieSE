@@ -38,14 +38,17 @@ export class SortNavBarComponent implements OnInit {
   // Flags for movie country
   conAllFlag: boolean = false;
   usaFlag: boolean = false;
-  europeFlag: boolean = false;
-  countryFlagArr: boolean[] = [this.conAllFlag, this.usaFlag, this.europeFlag];
+  canFlag: boolean = false;
+  franceFlag: boolean = false;
+  japanFlag: boolean = false;
+  countryFlagArr: boolean[] = [this.conAllFlag, this.usaFlag, this.canFlag, this.franceFlag, this.japanFlag];
 
   // Flag for movie langauge
   langAllFlag: boolean = false;
   enFlag: boolean = false;
   fnFlag: boolean = false;
-  langFlagArr: boolean[] = [this.langAllFlag, this.enFlag, this.fnFlag];
+  geFlag: boolean = false;
+  langFlagArr: boolean[] = [this.langAllFlag, this.enFlag, this.fnFlag, this.geFlag];
 
   // A filter array stores all the criteria selected
   filterCollection: string[] = new Array(5);
@@ -165,8 +168,14 @@ export class SortNavBarComponent implements OnInit {
       case "USA":
         this.countryFlagArr[1] = true;
         break;
-      case "Europe":
+      case "Canada":
         this.countryFlagArr[2] = true;
+        break;
+      case "France":
+        this.countryFlagArr[3] = true;
+        break;
+      case "Japan":
+        this.countryFlagArr[4] = true;
         break;
     }
 
@@ -190,6 +199,9 @@ export class SortNavBarComponent implements OnInit {
         break;
       case "French":
         this.langFlagArr[2] = true;
+        break;
+      case "German":
+        this.langFlagArr[3] = true;
         break;
     }
 
