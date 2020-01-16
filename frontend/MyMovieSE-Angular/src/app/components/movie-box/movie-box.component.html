@@ -10,7 +10,7 @@
         <div *ngIf="!noMatchingMovies" class="row" >
             <div class="col-md-3 mb-5" 
             *ngFor="let movieSnapshot of currentMovieSnapshots"
-            [routerLink]="movieSnapshot.imdbID"
+            [routerLink]="['movie/' + movieSnapshot.imdbID]"
             >
                 <app-movie-snapshot [movieSnapshot]="movieSnapshot"></app-movie-snapshot>
             </div>

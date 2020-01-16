@@ -25,10 +25,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent},
-  { path: ":movie_id", redirectTo: 'movie/:movie_id', pathMatch: 'full'},
   { path: 'movie/:movie_id', component: MovieComponent},
   { path: '', component: HomeComponent},
-  // { path: 'home', component: HomeComponent},
   { path: '**', component: NotFoundComponent},
 ]
 
