@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  server-service:
+    container_name: mymoviese_app
+    build: ./
+    ports:
+      - "8080:8080"
+    depends_on:
+      - datebase-service
+      
+  datebase-service:
+    container_name: docker_mysql
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d
+    restart: always
+    environment:
+      MYSQL_DATABASE: my_movie_se_app
+      MYSQL_ROOT_PASSWORD: password
