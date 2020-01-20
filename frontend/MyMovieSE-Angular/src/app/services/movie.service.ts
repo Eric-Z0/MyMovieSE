@@ -59,12 +59,12 @@ export class MovieService {
 
   // Get movie collection from Spring backend database
   getMovieCollection() {
-    let url: string = 'http://3.19.27.205:8080/api/test/upload';
+    let url: string = 'http://3.19.27.205/api/test/upload';
     return this.httpClient.get<GetMovieSearchResponse>(url);
   }
 
   getMovieCollectionAfterFilter(filter: string[]) {
-    let filterUrl: string = `http://3.19.27.205:8080/api/test/filter/c=${filter[0]}/g=${filter[1]}/y=${filter[2]}/r=${filter[3]}/l=${filter[4]}/`;
+    let filterUrl: string = `http://3.19.27.205/api/test/filter/c=${filter[0]}/g=${filter[1]}/y=${filter[2]}/r=${filter[3]}/l=${filter[4]}/`;
     console.log(filterUrl);
     return this.httpClient.get<GetMovieSearchResponse>(filterUrl);
   }
