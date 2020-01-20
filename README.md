@@ -1,11 +1,15 @@
 # Project Description
-[MyMovieSE](http://3.19.27.205) is a fully functioning movie search engine that is dockerized and hosted on AWS EC2.
+[MyMovieSE](http://3.19.27.205) is a fully functioning movie search engine that is dockerized and hosted on Amazon elastic compute cloud.
+
+<br/>
 
 ![MyMovieSE demo1](/readme-images/project_demo1.PNG) 
 
 ![MyMovieSE demo2](/readme-images/project_demo2.PNG)
 
-## Technical Details
+<br/>
+
+## Tech Stack
 The development of the whole project is composed of the following sections:
 - [Front-End](#front-end)
     - [Angular](#angular)
@@ -22,14 +26,23 @@ The development of the whole project is composed of the following sections:
     - [Docker](#docker)
     - [AWS EC2](#aws-ec2)
 
+<br/>
+
+**Programming Language:** &nbsp; Java, TypeScript, JavaScript   
+**Project Management Tool** &nbsp; Maven  
+**IDE:** &nbsp; Eclipse, Vistudio Code  
+**Operating System:** &nbsp; Windows, Linux  
+**Vision Control:** &nbsp; Git
 
 ## Front-End
 ### Angular
 > Angular is a TypeScript-based open-source web application framwork led by the Angular Team at Google and by a community of individuals and corporations. - Wikipedia
 
-![UI Layout demo](/readme-images/layout.PNG)
+The layout of UI:
 
-To implement the front-end user interface (UI), the work listed below is done:
+![UI Layout demo](/readme-images/layout.png)
+
+Detailed implemention of front-end user interface (UI) is listed below:
 
 
 **Components created**
@@ -59,13 +72,14 @@ const appRoutes: Routes = [
 ```
 <br/>
 
-**Several features applied:**
-* Display different components by using `*ngIf`
-* Display different effects on the same component by adding attribute `*ngClass`
-* Event binding between sibling components by using service and event subscription
-* Call asynchronous APIs by using `Observable` provided by RXJS library
-* Implement the authentication by storing a JWT token in the Session Storage
-* Implement certain user interactive effects importing the Bootstrap 4 library
+**Several features**
+- Implement the authentication by storing a JWT token in the Session Storage
+- Implement the pagination functionality
+- Event binding between sibling components by using service and event subscription
+- Display different components on condition by using `*ngIf` attribute
+- Apply different styles on the same component by using `*ngClass` attribute 
+- Call asynchronous APIs by using `Observable` provided by RXJS library
+- Implement several user interactive effects by using Bootstrap 4 library
 
 <br/>
 
@@ -99,16 +113,18 @@ const appRoutes: Routes = [
 - AuthController
 - MovieController
 
-**Functions provided**
-* REST API
-* Authentication
-* AOP - logging
-* Stream java 8 feature is used
+**Several features**
+- REST Services
+- Authentication
+- Java 8 Stream
 
 Back-end process diagram:
-![backend process diagram]()
+
+![backend process diagram](/readme-images/backend_process.png)
 
 _**Explanation of Authentication Mechanism:**_
+
+
 
 
 <br/>
