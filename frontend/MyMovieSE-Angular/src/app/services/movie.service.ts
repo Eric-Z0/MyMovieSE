@@ -53,7 +53,7 @@ interface GetMovieSearchResponse {
 })
 export class MovieService {
 
-  private testUrl = 'http://www.omdbapi.com/?s=Batman&page=2&apikey=a9b731fa'
+  //private testUrl = 'http://www.omdbapi.com/?s=Batman&page=2&apikey=a9b731fa'
   
   constructor(private httpClient: HttpClient) { }
 
