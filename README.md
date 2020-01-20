@@ -29,10 +29,10 @@ The development of the whole project is composed of the following sections:
 <br/>
 
 :green_book: **Programming Language:** &nbsp; Java, TypeScript, JavaScript   
-**Project Management Tool** &nbsp; Maven  
-**IDE:** &nbsp; Eclipse, Vistudio Code  
-**Operating System:** &nbsp; Windows, Linux  
-**Vision Control:** &nbsp; Git
+:blue_book: **Project Management Tool** &nbsp; Maven  
+:organe_book: **IDE:** &nbsp; Eclipse, Vistudio Code  
+:desktop_computer: **Operating System:** &nbsp; Windows, Linux  
+:gear: **Vision Control:** &nbsp; Git
 
 ## Front-End
 ### Angular
@@ -125,8 +125,7 @@ const appRoutes: Routes = [
 ![backend process diagram](/readme-images/backend_process.png)
 
 _**Explanation of Authentication Mechanism:**_
-
-
+- TBD
 
 
 <br/>
