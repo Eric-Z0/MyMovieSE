@@ -18,7 +18,7 @@ The development of the whole project is composed of the following sections:
 - [Database](#database)
     - [MySQL](#mysql)
 - [API Design](#api-design)
-    - [REST API Table]()
+    - [REST API Table](#rest-api-table)
 - [Testing](#tesing)
     - [Front-End Testing](#front-end-testing)
     - [Back-End Testing](#back-end-testing)
@@ -143,6 +143,19 @@ _**Explanation of Authentication Mechanism:**_
 
 _Note:_  
 _Given the current project only stores data related to users and movies, a relational database can well serve the purpose. However, when requests scale up, an additional non-relational database such as Redis can be used to cache certain data that are must often requested._
+
+## API Design
+### REST API Table
+
+| Methods |      Urls    |   Actions   |
+|---------|--------------|-------------|
+| POST | /api/auth/signup | Register new account |
+| POST | /api/auth/signin | Log in an account |
+| GET  | /api/test/filter/c={cat}/g={genre}/y={year}/r={country}/l={lang} | Return a collection of movies based on filter flag |
+| GET  | /www.omdbapi.com/?s={movieTitle}&apikey={apikey} | Return movie snapshots based on movie title |
+| GET  | /www.omdbapi.com/?i={imdbID}&apikey={apikey} | Return detailed movie info based on movie imdb ID |
+
+<br/>
 
 ## Testing
 ### Front-End Testing
