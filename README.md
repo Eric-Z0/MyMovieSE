@@ -30,7 +30,7 @@ The development of the whole project is composed of the following sections:
 
 :green_book: **Programming Language:** &nbsp; Java, TypeScript, JavaScript   
 :blue_book: **Project Management Tool** &nbsp; Maven  
-:organe_book: **IDE:** &nbsp; Eclipse, Vistudio Code  
+:orange_book: **IDE:** &nbsp; Eclipse, Vistudio Code  
 :desktop_computer: **Operating System:** &nbsp; Windows, Linux  
 :gear: **Vision Control:** &nbsp; Git
 
