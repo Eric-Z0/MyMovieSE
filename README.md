@@ -28,7 +28,7 @@ The development of the whole project is composed of the following sections:
 
 <br/>
 
-**Programming Language:** &nbsp; Java, TypeScript, JavaScript   
+:green_book: **Programming Language:** &nbsp; Java, TypeScript, JavaScript   
 **Project Management Tool** &nbsp; Maven  
 **IDE:** &nbsp; Eclipse, Vistudio Code  
 **Operating System:** &nbsp; Windows, Linux  
@@ -94,7 +94,9 @@ const appRoutes: Routes = [
 **Dependencies required**
 - Spring REST
 - Spring Security
-- Spring JPA
+- Spring Data JPA
+- Spring Boot DevTools
+- MySQL Driver
 
 **Models created**
 - ERole
@@ -118,7 +120,7 @@ const appRoutes: Routes = [
 - Authentication
 - Java 8 Stream
 
-Back-end process diagram:
+**Back-end process diagram:**
 
 ![backend process diagram](/readme-images/backend_process.png)
 
@@ -168,10 +170,11 @@ Java Spring REST Unit Tests -TBD
 ### Docker
 > Docker is a set of platform as a service (PaaS) products that use OS-level virtualization to deliver software in packages called containers. - Wikipedia
 
-In this project, two docker images are created and the dockerized application can be run through docker-compose command. This also embodies the microservice idea. 
+For this project, two docker images - Java web application and MySQL - are created. The docker containers generated based on these two images are organized by Docker compose (embodiment of microservice). 
 
-Dockerized App Diagram:
-![dockerized app diagram]()
+**Dockerized App Diagram:**
+
+![dockerized app diagram](/readme-images/docker_demo.png)
 
 **DockerFile:**
 ```docker
@@ -182,8 +185,8 @@ ENTRYPOINT ["java", "-jar", "/app.jar"]
 ```
 
 _Note:_  
-_[1] This project before dockerized, needs to build Angular and Spring Boot as one deployment unit._  
-_[2] Since this app docker image generation requires JAR files. Before it is built, maven is needed to install the Java Spring application._
+_[1] For this project, Angular and Spring Boot is packaged into one deployment unit._   
+_[2] Because docker image generation of this application requires JAR files. It is necessary to build the application by using Maven command `mvn clean install` to generate JAR files._
 
 ### Docker Compose
 > Compose is a tool for defining and running multi-container Docker applications. - docker.com
@@ -217,9 +220,14 @@ services:
 ### AWS EC2
 > Amazon Elastic Compute Cloud forms a central part of Amazon.com's cloud-computing platform, by allowing users to rent vitual computers on which to run their own computer applications. - Wikipedia
 
+**Dockerized App Hosted on AWS:**
+
+![dockerized app on AWS](/readme-images/docker_on_aws.png)
+
+
 The process of deploying dockerized application on EC2:
 1. Create an EC2 instance. (Given the restriction of Free tier, almost all settings are set by default, at the last step a key-pair needs to be provided)
-2. Run SSH to connect to EC2 Linux server remotely with the pem key downloaded.
+2. Run SSH to connect to EC2 Linux server remotely with the pem key downloaded from AWS.
 3. Run yum command to install docker, git, java 8 and maven.
 4. Use git to clone the project
 5. Use maven to package the whole application and generate JAR file.
