@@ -1,9 +1,9 @@
 # Project Description
 [MyMovieSE](http://3.19.27.205) is a fully functioning movie search engine that is dockerized and hosted on AWS EC2.
 
-![MyMovieSE demo1](github.com/Eric-Z0/MyMovieSE/tree/deploy-docker/readme-images/project_demo1.PNG) 
+![MyMovieSE demo1](/readme-images/project_demo1.PNG) 
 
-![MyMovieSE demo2](github.com/Eric-Z0/MyMovieSE/tree/deploy-docker/readme-images/project_demo2.PNG)
+![MyMovieSE demo2](/readme-images/project_demo2.PNG)
 
 ## Technical Details
 The development of the whole project is composed of the following sections:
@@ -27,7 +27,7 @@ The development of the whole project is composed of the following sections:
 ### Angular
 > Angular is a TypeScript-based open-source web application framwork led by the Angular Team at Google and by a community of individuals and corporations. - Wikipedia
 
-![UI Layout demo](github.com/Eric-Z0/MyMovieSE/tree/deploy-docker/readme-images/layout.PNG)
+![UI Layout demo](/readme-images/layout.PNG)
 
 To implement the front-end user interface (UI), the work listed below is done:
 
