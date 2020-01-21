@@ -35,7 +35,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private AuthEntryPointJwt unauthorizedHandler;
 	
-	
+	/*
+	 The following code are commented out because they are only created
+	 for running local JUnit Tests. They should not exit for deployment.
+	 
 	//-------- An attempt to allow the unit test run---------
 	@Bean
 	public UserDetailsServiceImpl userDetailsService() {
@@ -57,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	    return new JwtUtils();
 	}
 	//-------------------------------------------------------
-	
+	*/
 
 	@Bean
 	public AuthTokenFilter authenticationJwtTokenFilter() {
