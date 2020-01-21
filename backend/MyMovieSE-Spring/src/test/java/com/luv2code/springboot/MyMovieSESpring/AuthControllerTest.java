@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -31,7 +30,6 @@ import com.luv2code.springboot.MyMovieSESpring.payload.request.LoginRequest;
 import com.luv2code.springboot.MyMovieSESpring.payload.request.SignupRequest;
 import com.luv2code.springboot.MyMovieSESpring.repository.RoleRepository;
 import com.luv2code.springboot.MyMovieSESpring.repository.UserRepository;
-import com.luv2code.springboot.MyMovieSESpring.security.jwt.JwtUtils;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(controllers = AuthController.class)
@@ -48,12 +46,6 @@ public class AuthControllerTest {
 	
 	@Autowired
 	PasswordEncoder encoder;
-	
-	@Autowired
-	AuthenticationManager authenticationManager;
-	
-	@Autowired
-	JwtUtils jwtUtils;
 	
 	SignupRequest signupReq;
 	LoginRequest loginReq;

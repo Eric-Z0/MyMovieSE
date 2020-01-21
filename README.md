@@ -167,11 +167,16 @@ Jasmine Framework - TBD
 
 
 ### Back-End Testing
-Java Spring REST Unit Tests -TBD
+**Java Spring REST Unit Tests**
+- Using JUnit 4 Library
+- Using Mokito to mock DAO/Repository operations
+- Using MockMvc to mock HTTP request calls
 
-**Unit Tests Written**
+<br/>
 
-**Integration Tests Written**
+**Unit Tests**
+- AuthControllerTest
+
 
 <br/>
 
