@@ -167,8 +167,9 @@ _Given the current project only stores data related to users and movies, a relat
 **Unit Tests**
 1. Header Component (4 Test Cases)
 2. Login Component (3 Test Cases)
-3. Profile Component (2 Test Cases)
-4. TBD
+3. Register Component (7 Test Cases)
+4. Profile Component (2 Test Cases)
+5. TBD 
 
 ### Back-End Testing
 **Java Spring REST Unit Tests**
