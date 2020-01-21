@@ -4,13 +4,13 @@
   </div>
   <div class="col-md-6">
     <div class="input-group">
-      <input (keydown.enter)="search(movieTitle.value)" #movieTitle type="text" class="form-control" placeholder="Search">
+      <input id="searchInput" (keydown.enter)="search(movieTitle.value)" #movieTitle type="text" class="form-control" placeholder="Search">
       <div class="input-group-append">
-        <button class="btn btn-success" (click)="search(movieTitle.value)"><i class="fa fa-search"></i></button>
+        <button id="searchBtn" class="btn btn-success" (click)="search(movieTitle.value)"><i class="fa fa-search"></i></button>
       </div>
     </div>
   </div>
-  <div *ngIf="!userLoggedIn" class="col-md-2">
+  <div id="userNotLoggedInDiv" *ngIf="!userLoggedIn" class="col-md-2">
     <span class="float-right">
       <button type="button" class="btn btn-outline-secondary mr-md-2" data-toggle="modal" data-target="#logInModalCenter">
         Log In
@@ -20,7 +20,7 @@
       </button>
     </span>
   </div>
-  <div *ngIf="userLoggedIn" class="col-md-2">
+  <div id="userLoggedInDiv" *ngIf="userLoggedIn" class="col-md-2">
     <span class="float-right">
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
 
   search(movieTitle: string) {
     if(movieTitle != this.prevSearchVal) {
+      this.prevSearchVal = movieTitle;
       this.movieService.emitChange(movieTitle);
     }
   }
