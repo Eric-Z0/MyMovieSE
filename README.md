@@ -159,10 +159,13 @@ _Given the current project only stores data related to users and movies, a relat
 
 ## Testing
 ### Front-End Testing
-Jasmine Framework - TBD  
+**Angular Unit Tests**
+- Using Jasmine Framework  
 
-**Unit Tests Written**
-1. TBD
+<br/>
+
+**Unit Tests**
+1. Header Component (4 Test Cases)
 2. TBD
 
 
