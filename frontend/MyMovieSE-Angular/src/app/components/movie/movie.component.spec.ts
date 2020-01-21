@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MovieComponent } from './movie.component';
+import { RouterModule } from '@angular/router';
 
 describe('MovieComponent', () => {
   let component: MovieComponent;
@@ -8,7 +9,8 @@ describe('MovieComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MovieComponent ]
+      declarations: [ MovieComponent ],
+      imports: [HttpClientTestingModule, RouterModule.forRoot([])]
     })
     .compileComponents();
   }));
@@ -22,4 +24,5 @@ describe('MovieComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
