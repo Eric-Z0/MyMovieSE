@@ -14,7 +14,7 @@ export class MovieComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private movieService: MovieService) { }
 
   ngOnInit() {
-    console.log("Movie Component oninit!");
+    //console.log("Movie Component oninit!");
     this.route.params.subscribe((params: Params) => {
       this.movieService.getMovieByImdbId(params['movie_id']).subscribe(
         data => {
