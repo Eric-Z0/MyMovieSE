@@ -30,7 +30,7 @@ The development of the whole project is composed of the following sections:
 
 :green_book: **Programming Language:** &nbsp; Java, TypeScript, JavaScript   
 :blue_book: **Project Management Tool:** &nbsp; Maven  
-:orange_book: **IDE:** &nbsp; Eclipse, Vistudio Code  
+:orange_book: **IDE:** &nbsp; Eclipse, Vistual Studio Code  
 :desktop_computer: **Operating System:** &nbsp; Windows, Linux  
 :gear: **Vision Control:** &nbsp; Git
 
@@ -159,12 +159,17 @@ _Given the current project only stores data related to users and movies, a relat
 
 ## Testing
 ### Front-End Testing
-Jasmine Framework - TBD  
+**Angular Unit Tests**
+- Using Jasmine Framework  
 
-**Unit Tests Written**
-1. TBD
-2. TBD
+<br/>
 
+**Unit Tests**
+1. Header Component (4 Test Cases)
+2. Login Component (3 Test Cases)
+3. Register Component (7 Test Cases)
+4. Profile Component (2 Test Cases)
+5. SearchResultBar Component (1 Test Case)
 
 ### Back-End Testing
 **Java Spring REST Unit Tests**
