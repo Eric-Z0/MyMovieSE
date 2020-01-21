@@ -16,13 +16,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.luv2code.springboot.MyMovieSESpring.security.jwt.AuthEntryPointJwt;
 import com.luv2code.springboot.MyMovieSESpring.security.jwt.AuthTokenFilter;
+import com.luv2code.springboot.MyMovieSESpring.security.jwt.JwtUtils;
 import com.luv2code.springboot.MyMovieSESpring.security.services.UserDetailsServiceImpl;
-
 
 /*
  @EnableWebSecurity allows Spring to find and automatically apply the class to the global Web Security.
- 
-  
  */
 
 
@@ -36,6 +34,30 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private AuthEntryPointJwt unauthorizedHandler;
+	
+	
+	//-------- An attempt to allow the unit test run---------
+	@Bean
+	public UserDetailsServiceImpl userDetailsService() {
+	    return new UserDetailsServiceImpl();
+	}
+	//-------------------------------------------------------
+	
+	
+	//-------- An attempt to allow the unit test run---------
+	@Bean
+	public AuthEntryPointJwt unauthorizedHandler() {
+	    return new AuthEntryPointJwt();
+	}
+	//-------------------------------------------------------
+	
+	//-------- An attempt to allow the unit test run---------
+	@Bean
+	public JwtUtils jwtUtils() {
+	    return new JwtUtils();
+	}
+	//-------------------------------------------------------
+	
 
 	@Bean
 	public AuthTokenFilter authenticationJwtTokenFilter() {
@@ -64,7 +86,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.authorizeRequests().antMatchers("/api/auth/**").permitAll()
-			.antMatchers("/api/test/**").permitAll()
+			.antMatchers("/api/movie/**").permitAll()
 			.antMatchers("/", "/**").permitAll()
 			.anyRequest().authenticated();
 

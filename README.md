@@ -151,7 +151,7 @@ _Given the current project only stores data related to users and movies, a relat
 |---------|--------------|-------------|
 | POST | /api/auth/signup | Register new account |
 | POST | /api/auth/signin | Log in an account |
-| GET  | /api/test/filter/c={cat}/g={genre}/y={year}/r={country}/l={lang} | Return a collection of movies based on filter flag |
+| GET  | /api/movie/filter/c={cat}/g={genre}/y={year}/r={country}/l={lang} | Return a collection of movies based on filter flag |
 | GET  | /www.omdbapi.com/?s={movieTitle}&apikey={apikey} | Return movie snapshots based on movie title |
 | GET  | /www.omdbapi.com/?i={imdbID}&apikey={apikey} | Return detailed movie info based on movie imdb ID |
 
@@ -165,9 +165,6 @@ Jasmine Framework - TBD
 1. TBD
 2. TBD
 
-**Integration Tests Written**
-1. TBD
-2. TBD
 
 ### Back-End Testing
 Java Spring REST Unit Tests -TBD
